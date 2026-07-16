@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -89,6 +89,7 @@ function PaperModal({ paper, onClose }: { paper: Paper; onClose: () => void }) {
       <motion.div initial={{ scale:0.91, y:28 }} animate={{ scale:1, y:0 }} exit={{ scale:0.91 }}
         transition={{ type:"spring", stiffness:280, damping:26 }}
         onClick={e=>e.stopPropagation()}
+        className="paper-modal-inner"
         style={{ background:"#0d0d0d", border:"1px solid rgba(255,106,0,0.22)", borderRadius:20,
           padding:"36px", maxWidth:560, width:"100%", position:"relative",
           boxShadow:"0 40px 80px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.03) inset" }}>
@@ -163,7 +164,7 @@ export default function Home() {
             transition:"background 0.1s" }} />
 
           {/* floating paper cards — strictly sides */}
-          <div style={{ position:"absolute", inset:0, zIndex:2, pointerEvents:"none" }}>
+          <div className="hero-floating-cards" style={{ position:"absolute", inset:0, zIndex:2, pointerEvents:"none" }}>
 {CARD_POS.map((pos, i) => {
               const paper = papers.length > 0 ? papers[i % papers.length] : {
                 arxiv_id: String(i), title: ["Retrieval-Augmented Generation", "Dense Passage Retrieval", "Self-RAG", "RAPTOR", "ColBERT", "Corrective RAG"][i] || "Research Paper",
@@ -175,7 +176,7 @@ export default function Home() {
           </div>
 
           {/* hero text — center */}
-          <motion.div style={{ y: heroY, opacity: heroOpacity,
+          <motion.div className="hero-text-wrapper" style={{ y: heroY, opacity: heroOpacity,
             position:"relative", zIndex:3, textAlign:"center",
             padding:"0 clamp(60px,18vw,260px)", maxWidth:1100, width:"100%" }}>
 
@@ -253,6 +254,7 @@ export default function Home() {
       {/* STATS */}
       <section style={{ padding:"0 clamp(16px,8vw,80px) 60px" }}>
         <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
+          className="stats-grid"
           style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",
             gap:1, border:"1px solid rgba(255,255,255,0.07)", borderRadius:16, overflow:"hidden" }}>
           {[{v:"18",l:"Research Papers"},{v:"602",l:"Knowledge Chunks"},{v:"Semantic",l:"Retrieval"},{v:"0",l:"Hallucinated Citations"}].map((s,i) => (
@@ -278,7 +280,7 @@ export default function Home() {
             From Question to <span style={{ color:"#FF6A00" }}>Accurate</span> Answer
           </h2>
         </motion.div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:10 }}>
+        <div className="pipeline-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(180px,1fr))", gap:10 }}>
           {PIPELINE.map((p,i) => (
             <motion.div key={p.n} initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }}
               transition={{ delay:i*0.09 }} viewport={{ once:true }}
@@ -305,7 +307,7 @@ export default function Home() {
             Built for production.
           </h2>
         </motion.div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:10 }}>
+        <div className="features-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:10 }}>
           {FEATURES.map((f,i) => (
             <motion.div key={f.title} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }}
               transition={{ delay:i*0.08 }} viewport={{ once:true }}
@@ -325,6 +327,7 @@ export default function Home() {
       {/* PAPERS */}
       <section style={{ padding:"0 clamp(16px,8vw,80px) 60px" }}>
         <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
+          className="papers-header"
           style={{ display:"flex", justifyContent:"space-between", alignItems:"flex-end", marginBottom:40 }}>
           <div>
             <div style={{ fontSize:11, letterSpacing:"0.24em", color:"#FF6A00", fontWeight:700, marginBottom:14 }}>CURATED RESEARCH PAPERS</div>
@@ -339,7 +342,7 @@ export default function Home() {
             View All Papers →
           </Link>
         </motion.div>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:10 }}>
+        <div className="papers-grid" style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))", gap:10 }}>
           {(papers.length ? papers.slice(0,6) : Array.from({length:6},(_,i)=>({arxiv_id:String(i),title:"",authors:"",year:0,abstract:"",pdf_url:""}))).map((p,i) => (
             <motion.div key={p.arxiv_id} initial={{ opacity:0, y:18 }} whileInView={{ opacity:1, y:0 }}
               transition={{ delay:i*0.07 }} viewport={{ once:true }}
@@ -379,7 +382,7 @@ export default function Home() {
           background:"radial-gradient(ellipse 70% 55% at 50% 50%, rgba(255,106,0,0.1) 0%, transparent 65%)" }} />
         <motion.div initial={{ opacity:0, y:28 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
           style={{ position:"relative", zIndex:1 }}>
-          <h2 style={{ fontSize:"clamp(46px,8.5vw,104px)", fontWeight:800, lineHeight:0.95,
+          <h2 className="cta-heading" style={{ fontSize:"clamp(46px,8.5vw,104px)", fontWeight:800, lineHeight:0.95,
             letterSpacing:"-0.038em", marginBottom:22 }}>
             Ready to explore<br />the power of <span style={{ color:"#FF6A00" }}>RAG?</span>
           </h2>
@@ -397,7 +400,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <footer style={{ padding:"24px clamp(16px,8vw,80px)", borderTop:"1px solid rgba(255,255,255,0.05)",
+      <footer className="site-footer" style={{ padding:"24px clamp(16px,8vw,80px)", borderTop:"1px solid rgba(255,255,255,0.05)",
         display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:12 }}>
         <span style={{ fontSize:12, color:"#2a2a2a" }}>RAG Research Studio · Priyanka Narang</span>
         <span style={{ fontSize:12, color:"#2a2a2a" }}>Faithfulness 0.91 · Hybrid Retrieval · Zero Hallucinations</span>

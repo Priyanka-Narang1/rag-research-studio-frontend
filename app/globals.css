@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -68,4 +68,75 @@ body {
   70% { transform: translate(-2%,-1%); }
   80% { transform: translate(3%,-3%); }
   90% { transform: translate(-1%,2%); }
+}
+
+/* ── Responsive utilities ── */
+.mobile-hidden { display: unset; }
+.desktop-hidden { display: none !important; }
+
+@media (max-width: 768px) {
+  .mobile-hidden { display: none !important; }
+  .desktop-hidden { display: unset !important; }
+
+  /* Navbar */
+  .nav-links-desktop { display: none !important; }
+  .nav-cta-desktop { display: none !important; }
+  .nav-bar { padding: 0 16px !important; }
+
+  /* Hero floating cards */
+  .hero-floating-cards { display: none !important; }
+
+  /* Hero text */
+  .hero-text-wrapper { padding: 0 20px !important; }
+
+  /* Stats grid — 2 columns */
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Pipeline / features / papers — single column */
+  .pipeline-grid { grid-template-columns: 1fr !important; }
+  .features-grid { grid-template-columns: 1fr !important; }
+  .papers-grid { grid-template-columns: 1fr !important; }
+
+  /* Chat page — hide sidebars */
+  .chat-sidebar-left { display: none !important; }
+  .chat-sidebar-right { display: none !important; }
+  .chat-topbar-meta { display: none !important; }
+
+  /* Papers page grid */
+  .papers-page-grid { grid-template-columns: 1fr !important; }
+  .papers-header { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+
+  /* Modal adjustments */
+  .paper-modal-inner { padding: 24px !important; max-width: 100% !important; }
+
+  /* Mobile menu overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgba(5, 5, 5, 0.97);
+    backdrop-filter: blur(24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .mobile-menu-overlay a {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu-overlay a:hover,
+  .mobile-menu-overlay a.active {
+    color: #FF6A00;
+  }
+
+  /* CTA section responsive */
+  .cta-heading { font-size: clamp(32px, 8vw, 60px) !important; }
+
+  /* Footer */
+  .site-footer { flex-direction: column !important; text-align: center !important; }
 }

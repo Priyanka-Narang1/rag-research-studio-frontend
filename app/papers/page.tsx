@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -25,7 +25,8 @@ function PaperModal({ paper, onClose }: { paper: Paper; onClose: () => void }) {
         style={{ background: "#0d0d0d", border: "1px solid rgba(255,106,0,0.22)", borderRadius: 20,
           padding: "36px", maxWidth: 580, width: "100%", position: "relative",
           boxShadow: "0 40px 80px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.03) inset",
-          maxHeight: "85vh", overflowY: "auto" }}>
+          maxHeight: "85vh", overflowY: "auto" }}
+        className="paper-modal-inner">
         <button onClick={onClose}
           style={{ position: "absolute", top: 18, right: 18, background: "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, width: 34, height: 34,
@@ -145,7 +146,7 @@ export default function PapersPage() {
             <div style={{ fontSize: 12, color: "rgba(255,255,255,0.25)", marginBottom: 20 }}>
               Showing {filtered.length} of {papers.length} papers
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 12 }}>
+            <div className="papers-page-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(280px,1fr))", gap: 12 }}>
               {filtered.map((p, i) => (
                 <motion.div key={p.arxiv_id}
                   initial={{ opacity: 0, y: 20 }}
@@ -196,7 +197,7 @@ export default function PapersPage() {
         )}
       </section>
 
-      <footer style={{ padding: "24px clamp(16px,8vw,80px)", borderTop: "1px solid rgba(255,255,255,0.05)",
+      <footer className="site-footer" style={{ padding: "24px clamp(16px,8vw,80px)", borderTop: "1px solid rgba(255,255,255,0.05)",
         display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
         <span style={{ fontSize: 12, color: "#2a2a2a" }}>RAG Research Studio · Priyanka Narang</span>
         <span style={{ fontSize: 12, color: "#2a2a2a" }}>18 Curated Papers · Hybrid Retrieval</span>

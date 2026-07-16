@@ -159,7 +159,7 @@ export default function ChatPage() {
       {/* top bar */}
       <div style={{ height: 56, borderBottom: "1px solid rgba(255,255,255,0.06)", flexShrink: 0,
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0 24px", background: "rgba(5,5,5,0.95)", backdropFilter: "blur(20px)" }}>
+        padding: "0 clamp(12px, 3vw, 24px)", background: "rgba(5,5,5,0.95)", backdropFilter: "blur(20px)" }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
           <div style={{ width: 26, height: 26, borderRadius: 7, background: "#FF6A00",
             display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -169,7 +169,7 @@ export default function ChatPage() {
           </div>
           <span style={{ color: "#fff", fontWeight: 700, fontSize: 14 }}>RAG Studio</span>
         </Link>
-        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>
+        <span className="chat-topbar-meta" style={{ fontSize: 12, color: "rgba(255,255,255,0.25)" }}>
           18 papers · hybrid retrieval · citation enforcement
         </span>
         <Link href="/papers" style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", textDecoration: "none",
@@ -184,7 +184,7 @@ export default function ChatPage() {
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
 
         {/* LEFT — history */}
-        <div style={{ width: 240, flexShrink: 0, borderRight: "1px solid rgba(255,255,255,0.06)",
+        <div className="chat-sidebar-left" style={{ width: 240, flexShrink: 0, borderRight: "1px solid rgba(255,255,255,0.06)",
           display: "flex", flexDirection: "column", background: "#080808", overflow: "hidden" }}>
           <div style={{ padding: "16px 16px 10px", fontSize: 10, color: "rgba(255,255,255,0.25)",
             fontWeight: 700, letterSpacing: "0.12em" }}>HISTORY</div>
@@ -354,7 +354,7 @@ export default function ChatPage() {
         </div>
 
         {/* RIGHT — sources */}
-        <div style={{ width: 280, flexShrink: 0, borderLeft: "1px solid rgba(255,255,255,0.06)",
+        <div className="chat-sidebar-right" style={{ width: 280, flexShrink: 0, borderLeft: "1px solid rgba(255,255,255,0.06)",
           display: "flex", flexDirection: "column", background: "#080808", overflow: "hidden" }}>
           <div style={{ padding: "16px 16px 10px", fontSize: 10, color: "rgba(255,255,255,0.25)",
             fontWeight: 700, letterSpacing: "0.12em" }}>RETRIEVED SOURCES</div>
