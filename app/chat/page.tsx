@@ -133,7 +133,6 @@ export default function ChatPage() {
         id: (Date.now() + 1).toString(),
         role: "assistant",
         content: data.answer, key_takeaways: data.key_takeaways || [], citations: Array.from(new Map((data.citations || []).map((c: Citation) => [c.chunk_id, c])).values()),
-        citations: data.citations || [],
         latencies: data.latencies_ms,
         cost: data.cost_usd,
       };
@@ -373,6 +372,7 @@ export default function ChatPage() {
     </div>
   );
 }
+
 
 
 
