@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useMemo, useEffect } from "react";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
@@ -125,7 +125,7 @@ function Particles() {
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={n} array={pos} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[pos, 3]} />
       </bufferGeometry>
       <pointsMaterial color="#FF6A00" size={0.018} transparent opacity={0.5} />
     </points>

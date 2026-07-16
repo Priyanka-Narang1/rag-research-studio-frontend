@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -132,7 +132,7 @@ export default function ChatPage() {
       const assistantMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: data.answer, key_takeaways: data.key_takeaways || [], citations: Array.from(new Map((data.citations || []).map((c: Citation) => [c.chunk_id, c])).values()),
+        content: data.answer, key_takeaways: data.key_takeaways || [], citations: Array.from(new Map<string, Citation>((data.citations || []).map((c: Citation) => [c.chunk_id, c] as [string, Citation])).values()),
         latencies: data.latencies_ms,
         cost: data.cost_usd,
       };
